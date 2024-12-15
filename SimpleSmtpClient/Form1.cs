@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace SimpleSmtpClient
 {
-    public partial class mainForm : Form
+    public partial class MainForm : Form
     {
-        public mainForm()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,6 +17,7 @@ namespace SimpleSmtpClient
         {
             guiUser.ReadOnly = true;
             guiPassword.ReadOnly = true;
+
             if (guiUseCredentials.Checked)
             {
                 guiUser.ReadOnly = false;
@@ -44,40 +40,22 @@ namespace SimpleSmtpClient
                 SmtpClient client = new SmtpClient();
                 client.Host = guiServerName.Text;
                 client.Port = Convert.ToInt32(guiPort.Text);
+                
                 if (guiUseCredentials.Checked)
                 {
                     client.UseDefaultCredentials = false;
                     client.Credentials = new NetworkCredential(guiUser.Text, guiPassword.Text);
                 }
+
                 if (guiUseSsl.Checked)
                 {
                     client.EnableSsl = true;
-
-                    int sslVer = cmbSSLVersion.SelectedIndex;
-                    if (sslVer == 0 || sslVer == -1)
-                    {
-                        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.SystemDefault;
-                    }
-                    else if (sslVer == 1)
-                    {
-                        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
-                    }
-                    else if (sslVer == 2)
-                    {
-                        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-                    }
-                    else if (sslVer == 3)
-                    {
-                        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11;
-                    }
-                    else if (sslVer == 4)
-                    {
-                        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    }
-                    //tls 1.3 not supported by .net framework 4.8 as of now.
+                    ConfigSslOrTls();
                 }
+
                 MailMessage message = CreateMailMessage();
                 client.Send(message);
+
                 MessageBox.Show("Email Sent.");
 
             }
@@ -86,7 +64,7 @@ namespace SimpleSmtpClient
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
         private void ValidateSmtpConfiguration()
         {
             if (string.IsNullOrEmpty(guiServerName.Text))
@@ -118,6 +96,32 @@ namespace SimpleSmtpClient
             {
                 throw new Exception("Invalid Bcc address.");
             }
+        }
+
+        private void ConfigSslOrTls()
+        {
+            int sslVer = cmbSSLVersion.SelectedIndex;
+
+            switch (sslVer)
+            {
+                case 0:
+                case -1:
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.SystemDefault;
+                    break;
+                case 1:
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                    break;
+                case 2:
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+                    break;
+                case 3:
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11;
+                    break;
+                case 4:
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    break;
+            }
+            //tls 1.3 not supported by .net framework 4.8 as of now.
         }
 
         private MailMessage CreateMailMessage()
