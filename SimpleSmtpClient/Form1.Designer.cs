@@ -38,7 +38,7 @@
             this.guiUser = new System.Windows.Forms.TextBox();
             this.lblUserName = new System.Windows.Forms.Label();
             this.guiUseCredentials = new System.Windows.Forms.CheckBox();
-            this.guiPort = new System.Windows.Forms.TextBox();
+            this.guiPort = new System.Windows.Forms.NumericUpDown();
             this.lblPort = new System.Windows.Forms.Label();
             this.guiServerName = new System.Windows.Forms.TextBox();
             this.lblServerName = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             this.lblEmailFrom = new System.Windows.Forms.Label();
             this.guiSendMail = new System.Windows.Forms.Button();
             this.serverGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guiPort)).BeginInit();
             this.emailGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,9 +163,24 @@
             // guiPort
             // 
             this.guiPort.Location = new System.Drawing.Point(449, 28);
+            this.guiPort.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.guiPort.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.guiPort.Name = "guiPort";
             this.guiPort.Size = new System.Drawing.Size(73, 20);
             this.guiPort.TabIndex = 2;
+            this.guiPort.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             // 
             // lblPort
             // 
@@ -316,6 +332,7 @@
             this.Text = "Simple SMTP Client";
             this.serverGroup.ResumeLayout(false);
             this.serverGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guiPort)).EndInit();
             this.emailGroup.ResumeLayout(false);
             this.emailGroup.PerformLayout();
             this.ResumeLayout(false);
@@ -330,7 +347,7 @@
         private System.Windows.Forms.TextBox guiUser;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.CheckBox guiUseCredentials;
-        private System.Windows.Forms.TextBox guiPort;
+        private System.Windows.Forms.NumericUpDown guiPort;
         private System.Windows.Forms.Label lblPort;
         private System.Windows.Forms.TextBox guiServerName;
         private System.Windows.Forms.Label lblServerName;
