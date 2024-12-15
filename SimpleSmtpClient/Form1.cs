@@ -38,6 +38,9 @@ namespace SimpleSmtpClient
         {
             try
             {
+                ValidateSmtpConfiguration();
+                ValidateMailMessage();
+
                 SmtpClient client = new SmtpClient();
                 client.Host = guiServerName.Text;
                 client.Port = Convert.ToInt32(guiPort.Text);
@@ -84,6 +87,39 @@ namespace SimpleSmtpClient
             }
         }
 
+        private void ValidateSmtpConfiguration()
+        {
+            if (string.IsNullOrEmpty(guiServerName.Text))
+            {
+                throw new Exception("Invalid SMTP server.");
+            }
+
+            if (guiUseCredentials.Checked &&
+                (string.IsNullOrEmpty(guiUser.Text) || string.IsNullOrEmpty(guiPassword.Text)))
+            {
+                throw new Exception("Invalid User or Password.");
+            }
+        }
+
+        private void ValidateMailMessage()
+        {
+            if (!IsValidMailAddress(guiEmailFrom.Text))
+            {
+                throw new Exception("Invalid From address.");
+            }
+
+            if (!IsValidMailAddressList(guiEmailTo.Text))
+            {
+                throw new Exception("Invalid To address.");
+            }
+
+            if (!string.IsNullOrEmpty(guiEmailBcc.Text) &&
+                !IsValidMailAddressList(guiEmailBcc.Text))
+            {
+                throw new Exception("Invalid Bcc address.");
+            }
+        }
+
         private MailMessage CreateMailMessage()
         {
             MailMessage mailMessage = new MailMessage();
@@ -97,6 +133,24 @@ namespace SimpleSmtpClient
             mailMessage.IsBodyHtml = guiIsBodyHtml.Checked;
             mailMessage.Subject = guiEmailSubject.Text;
             return mailMessage;
+        }
+
+        private static bool IsValidMailAddressList(string str)
+        {
+            return str.Split(',').All(IsValidMailAddress);
+        }
+
+        private static bool IsValidMailAddress(string str)
+        {
+            try
+            {
+                _ = new MailAddress(str);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
