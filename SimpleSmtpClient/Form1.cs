@@ -94,6 +94,7 @@ namespace SimpleSmtpClient
                 mailMessage.Bcc.Add(guiEmailBcc.Text);
             }
             mailMessage.Body = guiEmailBody.Text;
+            mailMessage.IsBodyHtml = guiIsBodyHtml.Checked;
             mailMessage.Subject = guiEmailSubject.Text;
             return mailMessage;
         }

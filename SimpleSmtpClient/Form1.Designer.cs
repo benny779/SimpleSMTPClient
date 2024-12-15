@@ -54,6 +54,7 @@
             this.guiEmailFrom = new System.Windows.Forms.TextBox();
             this.lblEmailFrom = new System.Windows.Forms.Label();
             this.guiSendMail = new System.Windows.Forms.Button();
+            this.guiIsBodyHtml = new System.Windows.Forms.CheckBox();
             this.serverGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guiPort)).BeginInit();
             this.emailGroup.SuspendLayout();
@@ -209,6 +210,7 @@
             // 
             // emailGroup
             // 
+            this.emailGroup.Controls.Add(this.guiIsBodyHtml);
             this.emailGroup.Controls.Add(this.guiEmailBody);
             this.emailGroup.Controls.Add(this.lblBody);
             this.emailGroup.Controls.Add(this.guiEmailSubject);
@@ -221,7 +223,7 @@
             this.emailGroup.Controls.Add(this.lblEmailFrom);
             this.emailGroup.Location = new System.Drawing.Point(12, 170);
             this.emailGroup.Name = "emailGroup";
-            this.emailGroup.Size = new System.Drawing.Size(539, 280);
+            this.emailGroup.Size = new System.Drawing.Size(539, 289);
             this.emailGroup.TabIndex = 1;
             this.emailGroup.TabStop = false;
             this.emailGroup.Text = "Email Message";
@@ -309,13 +311,23 @@
             // 
             // guiSendMail
             // 
-            this.guiSendMail.Location = new System.Drawing.Point(446, 465);
+            this.guiSendMail.Location = new System.Drawing.Point(446, 469);
             this.guiSendMail.Name = "guiSendMail";
             this.guiSendMail.Size = new System.Drawing.Size(104, 31);
             this.guiSendMail.TabIndex = 13;
             this.guiSendMail.Text = "Send Mail";
             this.guiSendMail.UseVisualStyleBackColor = true;
             this.guiSendMail.Click += new System.EventHandler(this.guiSendMail_Click);
+            // 
+            // guiIsBodyHtml
+            // 
+            this.guiIsBodyHtml.AutoSize = true;
+            this.guiIsBodyHtml.Location = new System.Drawing.Point(76, 265);
+            this.guiIsBodyHtml.Name = "guiIsBodyHtml";
+            this.guiIsBodyHtml.Size = new System.Drawing.Size(67, 17);
+            this.guiIsBodyHtml.TabIndex = 13;
+            this.guiIsBodyHtml.Text = "Is HTML";
+            this.guiIsBodyHtml.UseVisualStyleBackColor = true;
             // 
             // mainForm
             // 
@@ -366,6 +378,7 @@
         private System.Windows.Forms.CheckBox guiUseSsl;
         private System.Windows.Forms.Label lblSSLVersion;
         private System.Windows.Forms.ComboBox cmbSSLVersion;
+        private System.Windows.Forms.CheckBox guiIsBodyHtml;
     }
 }
 
