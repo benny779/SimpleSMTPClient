@@ -214,7 +214,7 @@
             this.guiEmailBody.Multiline = true;
             this.guiEmailBody.Name = "guiEmailBody";
             this.guiEmailBody.Size = new System.Drawing.Size(446, 77);
-            this.guiEmailBody.TabIndex = 11;
+            this.guiEmailBody.TabIndex = 12;
             // 
             // lblBody
             // 
@@ -230,7 +230,7 @@
             this.guiEmailSubject.Location = new System.Drawing.Point(76, 142);
             this.guiEmailSubject.Name = "guiEmailSubject";
             this.guiEmailSubject.Size = new System.Drawing.Size(446, 20);
-            this.guiEmailSubject.TabIndex = 10;
+            this.guiEmailSubject.TabIndex = 11;
             // 
             // lblSubject
             // 
@@ -294,7 +294,7 @@
             this.guiSendMail.Location = new System.Drawing.Point(446, 465);
             this.guiSendMail.Name = "guiSendMail";
             this.guiSendMail.Size = new System.Drawing.Size(104, 31);
-            this.guiSendMail.TabIndex = 12;
+            this.guiSendMail.TabIndex = 13;
             this.guiSendMail.Text = "Send Mail";
             this.guiSendMail.UseVisualStyleBackColor = true;
             this.guiSendMail.Click += new System.EventHandler(this.guiSendMail_Click);
