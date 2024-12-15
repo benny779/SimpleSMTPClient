@@ -29,6 +29,11 @@ namespace SimpleSmtpClient
             }
         }
 
+        private void guiUseSsl_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbSSLVersion.Enabled = guiUseSsl.Checked;
+        }
+
         private void guiSendMail_Click(object sender, EventArgs e)
         {
             try

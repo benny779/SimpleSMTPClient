@@ -90,6 +90,7 @@
             // 
             // cmbSSLVersion
             // 
+            this.cmbSSLVersion.Enabled = false;
             this.cmbSSLVersion.FormattingEnabled = true;
             this.cmbSSLVersion.Items.AddRange(new object[] {
             "Auto",
@@ -111,6 +112,7 @@
             this.guiUseSsl.TabIndex = 6;
             this.guiUseSsl.Text = "Use SSL";
             this.guiUseSsl.UseVisualStyleBackColor = true;
+            this.guiUseSsl.CheckedChanged += new System.EventHandler(this.guiUseSsl_CheckedChanged);
             // 
             // guiPassword
             // 
